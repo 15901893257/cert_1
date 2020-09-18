@@ -1,0 +1,18 @@
+.point{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 500px;
+    margin:  0px 0.5em;  /*调整圆点的位置*/
+    background-color: #ddd;
+    vertical-align: baseline;
+}
+
+.point-lg{
+    width: 15px;
+    height: 15px;
+}
+
+.point-primary{
+    background-color: #8a6d3b;
+}
