@@ -23,4 +23,5 @@ public class SysUserDO {
 
     //状态：0-有效，1-无效
     private Integer uType;
+
 }
