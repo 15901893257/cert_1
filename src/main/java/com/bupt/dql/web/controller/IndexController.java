@@ -34,7 +34,7 @@ public class IndexController {
      */
     @RequestMapping("/success")
     public String success(){
-//        logger.info("success");
+        logger.info("success");
         return "es/search";
     }
 

@@ -5,20 +5,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * @author: mai
- * @date: 2020/9/18
+ * @date: 2020/9/19
  */
 @Controller
-@RequestMapping("/test")
-public class TestController {
+@RequestMapping("/page")
+public class PageController {
 
-    @RequestMapping("/index")
-    public String index(){
-        return "index";
-    }
-
-    @RequestMapping("/test")
-    public String test(){
-        return "test";
+    @RequestMapping("/register")
+    public String register(){
+        return "register";
     }
 
     @RequestMapping("/login")
