@@ -24,10 +24,11 @@ public class IndexController {
      */
     @RequestMapping("/login")
     public String login(){
-        return "sys/login";
+        return "login";
     }
 
     /**
+     *
      * ajax验证成功，跳转至这里
      * 跳转至系统首页
      * @return
