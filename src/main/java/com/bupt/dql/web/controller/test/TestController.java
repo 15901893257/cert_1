@@ -13,7 +13,12 @@ public class TestController {
 
     @RequestMapping("/index")
     public String index(){
-        return "sys/index";
+        return "index";
+    }
+
+    @RequestMapping("/index1")
+    public String index1(){
+        return "index1";
     }
 
     @RequestMapping("/test")

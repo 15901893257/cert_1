@@ -1,8 +1,11 @@
 package com.bupt.dql.pojo;
 
+import lombok.Data;
+
 /**
  * 封装公共的Page对象，并让user对象继承page对象
  */
+@Data
 public class Page {
     //每页显示数量
     private int limit;
@@ -11,27 +14,4 @@ public class Page {
     //sql语句起始索引
     private int offset;
 
-    public int getLimit() {
-        return limit;
-    }
-
-    public void setLimit(int limit) {
-        this.limit = limit;
-    }
-
-    public int getPage() {
-        return page;
-    }
-
-    public void setPage(int page) {
-        this.page = page;
-    }
-
-    public int getOffset() {
-        return offset;
-    }
-
-    public void setOffset(int offset) {
-        this.offset = offset;
-    }
 }

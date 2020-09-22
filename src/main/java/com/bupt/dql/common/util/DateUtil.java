@@ -1,6 +1,9 @@
 package com.bupt.dql.common.util;
 
+import java.text.Format;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * @author: mai
@@ -9,13 +12,50 @@ import java.text.SimpleDateFormat;
  */
 public class DateUtil {
 
-    private static String format = "yyyy-MM-dd";
+    private static final String DAY_FORMAT = "yyyy-MM-dd";
+    private static final String TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
 
-    //将时间搓转换为日期格式
-    public String getFormat(String time) {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
-        Long second = Long.parseLong(time);
+    /**
+     *  long转换成日期格式
+     */
+    public static String longToDay(long second) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DAY_FORMAT);
         return simpleDateFormat.format(second);
     }
 
+    /**
+     *  long转换成日期格式
+     */
+    public static String longToTime(long second) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(TIME_FORMAT);
+        return simpleDateFormat.format(second);
+    }
+
+    /**
+     *  String转换成日期格式
+     */
+    public static String stringToDay(String time) {
+       return longToDay(Long.valueOf(time));
+    }
+
+    /**
+     *  String转换成日期格式
+     */
+    public static String stringToTime(String time) {
+        return longToTime(Long.valueOf(time));
+    }
+
+    /**
+     *  String转换成日期格式
+     */
+    public static Date stringToDate(String time) throws ParseException {
+        SimpleDateFormat simpleDateFormat;
+        if (time.length() == 10) {
+            simpleDateFormat = new SimpleDateFormat(DAY_FORMAT);
+        } else {
+            simpleDateFormat = new SimpleDateFormat(TIME_FORMAT);
+        }
+        Date date = simpleDateFormat.parse(time);
+        return date;
+    }
 }
