@@ -42,7 +42,7 @@ public class SysUserVO {
     /**
      *  手机号
      */
-    private String telephone;
+    private String phone;
 
     /**
      *  邮箱

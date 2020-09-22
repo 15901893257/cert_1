@@ -6,12 +6,17 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.bupt.dql.dao.SysUserMapper;
 import com.bupt.dql.service.ISysUserService;
+import com.bupt.dql.web.common.CommonAssistant;
+import com.bupt.dql.web.common.JsonResult;
 import com.bupt.dql.web.pojo.entity.SysUserDO;
+import com.bupt.dql.web.pojo.vo.SysUserVO;
 import com.bupt.dql.web.query.SysUserQuery;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -26,7 +31,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserDO> im
     private SysUserMapper sysUserMapper;
 
     @Override
-    public List<SysUserDO> queryUserList(SysUserQuery query) {
+    public JsonResult getList(SysUserQuery query) {
         //查询条件
         QueryWrapper<SysUserDO> queryWrapper = new QueryWrapper<>();
         // 姓名/用户名/手机号
@@ -49,8 +54,14 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserDO> im
         //查询数据
         IPage<SysUserDO> page = new Page<>(query.getPage(), query.getLimit());
         IPage<SysUserDO> data = sysUserMapper.selectPage(page, queryWrapper);
-        List<SysUserDO> sysUserDOS = data.getRecords();
-        return sysUserDOS;
+        List<SysUserDO> sysUserDOList = data.getRecords();
+        List<SysUserVO> sysUserVOList = new ArrayList<>();
+        if (CollectionUtils.isEmpty(sysUserDOList)) {
+            return JsonResult.success();
+        }
+        //数据封装
+        sysUserVOList = CommonAssistant.transform(sysUserDOList);
+        return JsonResult.success("操作成功", sysUserVOList, data.getTotal());
     }
 
     /**

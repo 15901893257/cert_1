@@ -4,6 +4,7 @@ import com.bupt.dql.TestBase;
 import com.bupt.dql.common.util.DateUtil;
 import com.bupt.dql.common.util.MD5Util;
 import com.bupt.dql.web.pojo.entity.SysUserDO;
+import com.bupt.dql.web.pojo.vo.SysUserVO;
 import com.bupt.dql.web.query.SysUserQuery;
 import org.junit.Test;
 import org.springframework.util.CollectionUtils;
@@ -31,19 +32,6 @@ public class SysUserServiceTest extends TestBase {
             System.out.println("没有该用户");
         }
 
-    }
-
-    @Test
-    public void test02(){
-        SysUserQuery query = new SysUserQuery();
-        //query.setKeywords("邓权亮");
-        List<SysUserDO> sysUserDOList = sysUserService.queryUserList(query);
-
-        if (CollectionUtils.isEmpty(sysUserDOList)) {
-            System.out.println("list为空");
-        } else {
-            sysUserDOList.forEach(System.out :: println);
-        }
     }
 
     @Test

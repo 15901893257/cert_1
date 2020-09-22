@@ -2,6 +2,7 @@ package com.bupt.dql.web.controller;
 
 import com.bupt.dql.common.util.VerifyCodeUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -13,10 +14,9 @@ import javax.servlet.http.HttpSession;
  * 生成验证码
  */
 @Controller
-@RequestMapping("")
-public class VcodeController {
+public class VerCodeController {
 
-    @RequestMapping("/verCode")
+    @GetMapping("/verCode")
     public void verCode(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         response.setHeader("Pragma", "No-cache");
@@ -35,10 +35,5 @@ public class VcodeController {
         //生成图片
         int w = 100, h = 30;
         VerifyCodeUtils.outputImage(w, h, response.getOutputStream(), verifyCode);
-    }
-    @RequestMapping("test")
-    @ResponseBody
-    public String test(){
-        return "aaa";
     }
 }

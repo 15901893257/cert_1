@@ -1,4 +1,4 @@
-package com.bupt.dql.web.pojo.http.request;
+package com.bupt.dql.web.pojo.dto;
 
 import lombok.Data;
 
@@ -7,7 +7,7 @@ import lombok.Data;
  * @date: 2020/9/14
  */
 @Data
-public class HttpLoginRequestParam {
+public class LoginDTO {
     private String username;
 
     private String password;

@@ -1,5 +1,6 @@
 package com.bupt.dql.web.query;
 
+import com.bupt.dql.web.common.BaseQuery;
 import lombok.Data;
 
 /**
@@ -7,7 +8,7 @@ import lombok.Data;
  * @date: 2020/9/22
  */
 @Data
-public class SysUserQuery extends BaseQuery{
+public class SysUserQuery extends BaseQuery {
 
     /**
      * 员工id

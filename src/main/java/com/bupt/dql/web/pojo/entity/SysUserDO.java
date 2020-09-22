@@ -1,6 +1,7 @@
 package com.bupt.dql.web.pojo.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.bupt.dql.web.common.BaseEntity;
 import lombok.Data;
 
 /**
@@ -9,7 +10,7 @@ import lombok.Data;
  */
 @Data
 @TableName("sys_user")
-public class SysUserDO extends BaseEntity{
+public class SysUserDO extends BaseEntity {
 
     /**
      *  员工id

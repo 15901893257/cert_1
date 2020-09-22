@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<head th:replace="/fragments/common/common_head :: commonHeader">
+<head th:replace="/public/common_head :: commonHeader">
     <title>注册</title>
 </head>
 <body>
@@ -129,14 +129,14 @@
                 $.ajax({
                     type: "post",
                     async: false,     //默认为true,不写的话一直返回的是true
-                    url: "/sysUser/login",
+                    url: "/login",
                     contentType: "application/json",
                     //dataType: "json", // 返回类型不是json的话可以不填
                     data: JSON.stringify(param),
                     success(data) {
                         // alert("success3");
-                        if (data.ret) {
-                            window.location.href = "/index/success";   //这种可以眺后台
+                        if (data.code == 0) {
+                            window.location.href = "/success";   //这种可以眺后台
                             //window.location.href="/success.html";
                         } else {
                             //alert(data.msg);

@@ -2,14 +2,10 @@ package com.bupt.dql.service.elasticsearch;
 
 import com.bupt.dql.constant.GlobalConstant;
 import com.bupt.dql.constant.elasticsearch.ElasticsearchConstant;
-import com.bupt.dql.pojo.elasticsearch.Coding;
-import com.bupt.dql.pojo.elasticsearch.IndexNameChange;
-import com.bupt.dql.pojo.param.ElasticParam;
 import com.bupt.dql.web.enums.ElasticIndexEnum;
-import com.bupt.dql.web.enums.ElasticSearchEnum;
 import com.bupt.dql.web.enums.IndexEnum;
 import com.bupt.dql.web.exception.ParamException;
-import com.bupt.dql.web.pojo.http.request.ElasticSearchParam;
+import com.bupt.dql.web.pojo.dto.ElasticSearchDTO;
 import com.bupt.dql.web.pojo.vo.ElasticCodeVO;
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
@@ -45,7 +41,7 @@ public class ElasticsearchService {
     @Resource
     private RestHighLevelClient restHighLevelClient;
 
-    public List<ElasticCodeVO> query(ElasticSearchParam param){
+    public List<ElasticCodeVO> query(ElasticSearchDTO param){
         check(param);
 
         SearchRequest searchRequest = new SearchRequest(ElasticIndexEnum.getName(param.getIndex()));
@@ -104,7 +100,7 @@ public class ElasticsearchService {
         return elasticCodeVOList;
     }
 
-    private void setSearchSourceBuilder(SearchSourceBuilder searchSourceBuilder, ElasticSearchParam param){
+    private void setSearchSourceBuilder(SearchSourceBuilder searchSourceBuilder, ElasticSearchDTO param){
         //模糊查询
         if (param.getType() == 0) {
             searchSourceBuilder.query(QueryBuilders.matchQuery(ElasticsearchConstant.CODE_FILED, param.getKeyWord()));
@@ -114,7 +110,7 @@ public class ElasticsearchService {
         }
     }
 
-    private void check(ElasticSearchParam param){
+    private void check(ElasticSearchDTO param){
         if (param == null) {
             throw new ParamException(GlobalConstant.PARAM_ERROR);
         }

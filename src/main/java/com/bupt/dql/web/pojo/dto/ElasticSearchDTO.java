@@ -1,4 +1,4 @@
-package com.bupt.dql.web.pojo.http.request;
+package com.bupt.dql.web.pojo.dto;
 
 import lombok.Data;
 
@@ -7,7 +7,7 @@ import lombok.Data;
  * @date: 2020/9/16
  */
 @Data
-public class ElasticSearchParam {
+public class ElasticSearchDTO {
     //搜索类型：0-模糊匹配,1-正则
     private Integer type;
 

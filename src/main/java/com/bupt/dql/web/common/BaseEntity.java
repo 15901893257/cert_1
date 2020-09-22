@@ -1,4 +1,4 @@
-package com.bupt.dql.web.pojo.entity;
+package com.bupt.dql.web.common;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
