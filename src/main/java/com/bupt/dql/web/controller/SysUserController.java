@@ -30,6 +30,6 @@ public class SysUserController {
 
     @GetMapping("/index")
     public String index(){
-        return "admin/index1";
+        return "admin/index";
     }
 }
