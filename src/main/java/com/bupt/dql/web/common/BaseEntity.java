@@ -36,6 +36,7 @@ public class BaseEntity {
      */
     private String operator;
 
+
     /**
      *  备注
      */

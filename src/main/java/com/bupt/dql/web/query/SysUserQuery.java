@@ -11,12 +11,7 @@ import lombok.Data;
 public class SysUserQuery extends BaseQuery {
 
     /**
-     * 员工id
-     */
-    private Long userId;
-
-    /**
-     * 姓名/用户名/手机号
+     * 姓名/员工ID/用户名/手机号
      */
     private String keywords;
 
@@ -34,4 +29,9 @@ public class SysUserQuery extends BaseQuery {
      * 创建人
      */
     private String operator;
+
+    /**
+     * 更新人
+     */
+    private String updateOperator;
 }

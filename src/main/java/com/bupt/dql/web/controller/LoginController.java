@@ -58,4 +58,14 @@ public class LoginController {
         return "index";
     }
 
+    /**
+     *  注册页面
+     * @return
+     */
+    @GetMapping("/register")
+    public String register(){
+        System.out.println("注册");
+        return "register";
+    }
+
 }

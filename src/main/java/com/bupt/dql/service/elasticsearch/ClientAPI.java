@@ -26,5 +26,4 @@ public class ClientAPI {
         );
         return restHighLevelClient;
     }
-
 }

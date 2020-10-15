@@ -15,7 +15,15 @@ public interface ISysUserService extends IService<SysUserDO> {
      * @param query
      * @return
      */
-    JsonResult getList(SysUserQuery query);
+    List<SysUserDO> queryList(SysUserQuery query);
+
+    /**
+     * 根据查询条件获取数据列表
+     *
+     * @param query
+     * @return
+     */
+     JsonResult getList(SysUserQuery query);
 
     /**
      * 根据用户名查询用户

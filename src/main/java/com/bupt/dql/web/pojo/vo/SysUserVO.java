@@ -95,4 +95,14 @@ public class SysUserVO {
      *  头像
      */
     private String avatar;
+
+    /**
+     *  备注
+     */
+    private String remark;
+
+    /**
+     *  更新人
+     */
+    private String updateOperator;
 }

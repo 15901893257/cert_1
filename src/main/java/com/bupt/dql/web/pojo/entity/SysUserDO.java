@@ -1,8 +1,12 @@
 package com.bupt.dql.web.pojo.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.bupt.dql.web.common.BaseEntity;
 import lombok.Data;
+
+import java.io.Serializable;
 
 /**
  * @author: mai
@@ -10,7 +14,14 @@ import lombok.Data;
  */
 @Data
 @TableName("sys_user")
-public class SysUserDO extends BaseEntity {
+public class SysUserDO implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    /**
+     * 主键ID
+     */
+    @TableId(value = "id", type = IdType.AUTO)
+    private Long id;
 
     /**
      *  员工id
@@ -64,6 +75,21 @@ public class SysUserDO extends BaseEntity {
     private Long loginTime;
 
     /**
+     *  创建时间
+     */
+    private Long ctime;
+
+    /**
+     *  更新时间
+     */
+    private Long utime;
+
+    /**
+     *  创建人
+     */
+    private String operator;
+
+    /**
      *  用户状态
      *  0-有效，1-无效
      */
@@ -79,5 +105,15 @@ public class SysUserDO extends BaseEntity {
      *  头像
      */
     private String avatar;
+
+    /**
+     *  备注
+     */
+    private String remark;
+
+    /**
+     *  更新人
+     */
+    private String updateOperator;
 
 }

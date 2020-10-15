@@ -17,7 +17,6 @@ import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -31,14 +30,15 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserDO> im
     private SysUserMapper sysUserMapper;
 
     @Override
-    public JsonResult getList(SysUserQuery query) {
+    public List<SysUserDO> queryList(SysUserQuery query) {
         //查询条件
         QueryWrapper<SysUserDO> queryWrapper = new QueryWrapper<>();
-        // 姓名/用户名/手机号
+        // 姓名/员工ID/用户名/手机号
         if (!StringUtils.isEmpty(query.getKeywords())) {
             queryWrapper.like("name", query.getKeywords())
                     .or().like("username", query.getKeywords())
-                    .or().like("phone", query.getKeywords());
+                    .or().like("phone", query.getKeywords())
+                    .or().eq("user_id", query.getKeywords());
         }
         // 性别:0女 1男
         if (query.getGender() != null) {
@@ -53,6 +53,45 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserDO> im
 
         //查询数据
         IPage<SysUserDO> page = new Page<>(query.getPage(), query.getLimit());
+        System.out.println(query.getPage() + ": " + query.getLimit());
+        IPage<SysUserDO> data = sysUserMapper.selectPage(page, queryWrapper);
+        List<SysUserDO> sysUserDOList = data.getRecords();
+        return sysUserDOList;
+
+    }
+
+    @Override
+    public JsonResult getList(SysUserQuery query) {
+//        System.out.println(query.getPage());
+//        System.out.println(query.getLimit());
+        //查询条件
+        QueryWrapper<SysUserDO> queryWrapper = new QueryWrapper<>();
+        // 姓名/员工ID/用户名/手机号
+        if (!StringUtils.isEmpty(query.getKeywords())) {
+            queryWrapper.like("name", query.getKeywords())
+                    .or().like("username", query.getKeywords())
+                    .or().like("phone", query.getKeywords())
+                    .or().eq("user_id", query.getKeywords());
+        }
+        // 性别:0女 1男
+        if (query.getGender() != null) {
+            queryWrapper.eq("gender", query.getGender());
+        }
+        // 状态：0正常 1禁用
+        if (query.getStatus() != null) {
+            queryWrapper.eq("status", query.getStatus());
+        }
+        // 创建人/更新人
+        if (!StringUtils.isEmpty(query.getOperator())) {
+           // System.out.println("hello");
+            queryWrapper.like("operator", query.getOperator())
+                    .or().like("update_operator", query.getOperator());
+        }
+        //queryWrapper.eq("mark", 1);
+        queryWrapper.orderByAsc("user_id");
+
+        //查询数据
+        IPage<SysUserDO> page = new Page<>(query.getPage(), query.getLimit());
         IPage<SysUserDO> data = sysUserMapper.selectPage(page, queryWrapper);
         List<SysUserDO> sysUserDOList = data.getRecords();
         List<SysUserVO> sysUserVOList = new ArrayList<>();
@@ -61,6 +100,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserDO> im
         }
         //数据封装
         sysUserVOList = CommonAssistant.transform(sysUserDOList);
+        System.out.println(data.getTotal());
         return JsonResult.success("操作成功", sysUserVOList, data.getTotal());
     }
 

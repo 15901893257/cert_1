@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html xmlns:miguo="http://www.w3.org/1999/html" >
+<!-- 引入头部 -->
+<header>
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <title></title>
+        <link href="/assets/images/favicon.ico" rel="icon">
+        <link rel="stylesheet" href="/assets/libs/layui/css/layui.css"/>
+        <link rel="stylesheet" href="/assets/module/admin.css?v=318"/>
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <!--<![endif]&ndash;&gt;-->
+        <script type="text/javascript" src="/assets/libs/layui/layui.js"></script>
+        <!-- 冲突 -->
+        <!--<script type="text/javascript" src="/assets/js/common.js?v=318"></script>-->
+
+        <!-------- bootstrap-table --------------->
+        <link rel="stylesheet" href="/mycss/point.css"/>
+        <!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">-->
+        <link href="/mycss/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+        <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+
+        <link href="/demo/bootstrap-table-master/dist/bootstrap-table.css" rel="stylesheet"/>
+        <script src="/demo/bootstrap-table-master/dist/bootstrap-table.js"></script>
+        <script src="/demo/bootstrap-table-master/dist/locale/bootstrap-table-zh-CN.js"></script>
+    </head>
+</header>
+<body>
+<!-- 正文开始 -->
+<div class="layui-fluid">
+    <div class="layui-card">
+        <!-- 内容区 -->
+        <div class="layui-card-body">
+            <!-- 表格工具栏 -->
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <div class="layui-input-inline">
+                            <!-- 下拉单选 -->
+                            <select name="index" id="index"  lay-verify="" lay-search="" lay-filter="status" class="layui-input">
+                                <option value=''>【请选择索引】</option>
+                                <option value='0'>C</option>
+                                <option value='1'>C++</option>
+                                <option value='2'>C#</option>
+                                <option value='3'>Java</option>
+                                <option value='4'>JavaScript</option>
+                                <option value='5'>Python</option>
+                                <option value='6'>Ruby</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- 搜索类型下拉单选 -->
+                    <div class="layui-inline">
+                        <div class="layui-input-inline">
+                            <!-- 下拉单选 -->
+                            <select name="type" id="type" lay-verify="" lay-search="" lay-filter="gender" class="layui-input">
+                                <option value=''>【请选择搜索类型】</option>
+                                <option value='0'>模糊匹配</option>
+                                <option value='1'>正则式</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <div class="layui-input-inline">
+                            <input type="text" name="keyWord" id="keyWord" placeholder="请输入关键字或正则表达式" autocomplete="off"
+                                   class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <div class="layui-input-inline" style="width: auto;">
+                            <button class="layui-btn" id="search"><i
+                                    class="layui-icon">&#xe615;</i>查询
+                            </button>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <table id="tb_departments"></table>
+    </div>
+</div>
+</body>
+
+<script type="text/javascript">
+
+    $(function () {
+        var oButtonInit = new ButtonInit();
+        oButtonInit.Init();
+
+    });
+
+    var TableInit = function () {
+        // alert('tableInit');
+        var oTableInit = new Object();
+        //初始化Table
+        oTableInit.Init = function () {
+            $('#tb_departments').bootstrapTable('destroy');
+            $("#tb_departments").bootstrapTable({
+                url: "/es/matchQuery",         //请求后台的URL（*）
+                method: "get",                      //请求方式（*）
+                // toolbar: "#toolbar",                //工具按钮用哪个容器
+                striped: true,                      //是否显示行间隔色
+                cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+                pagination: true,                   //是否显示分页（*）
+                sortable: false,                     //是否启用排序
+                sortOrder: "asc",                   //排序方式
+                queryParams: oTableInit.queryParams,//传递参数（*）
+                sidePagination: "client",           //分页方式：client客户端分页，server服务端分页（*）
+                pageNumber:1,                       //初始化加载第一页，默认第一页
+                pageSize: 5,                       //每页的记录行数（*）
+                pageList: [5,10,20],        //可供选择的每页的行数（*）
+                search: false,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+                strictSearch: true,
+                showColumns: true,                  //是否显示所有的列
+                showRefresh: false,                  //是否显示刷新按钮
+                minimumCountColumns: 2,             //最少允许的列数
+                clickToSelect: true,                //是否启用点击选中行
+                // height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+                uniqueId: "ID",                     //每一行的唯一标识，一般为主键列
+                showToggle:false,                    //是否显示详细视图和列表视图的切换按钮
+                cardView: false,                    //是否显示详细视图
+                detailView: false,                   //是否显示父子表
+                formatLoadingMessage: function(){     //加载数据提示语
+                    return "查询中......";
+                    // return "";
+                },
+                formatNoMatches: function(){
+                    return "没有相关的匹配结果";
+                },
+                columns: [{
+                    checkbox: true,
+                    visible: false
+                }, {
+                    // field: "id",
+                    formatter: function (value,row,index) {
+                        var html = "<div class='form-inline'>"+
+                            "<div class='form-group' style='margin-right: 100px;color: #007bff;'>"+row['user_filename']+"</div>"+
+                            "<div class='form-group'><div><div class='point point-lg point-primary '></div>"+row['language']+"</div></div>"+
+                            "</div>"+
+                            "<br><pre class='prettyprint linenums'>"+row['highlight']+"</pre>"
+                        ;
+                        return html;
+                    }
+                    // title: "id"
+                }, ]
+            });
+        };
+
+        //得到查询的参数
+        oTableInit.queryParams = function (params) {
+            var temp = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
+                limit: params.limit,   //页面大小
+                offset: params.offset,  //页码
+                index: $("#index").val(),  //索引
+                type: $("#type").val(),  //搜索类型
+                keyWord: $("#keyWord").val()  //关键字
+            };
+            return temp;
+        };
+        return oTableInit;
+    };
+
+    var ButtonInit = function () {
+
+        $('#search').click(function() {
+            //alert("你好");
+            var oTable = new TableInit();
+            oTable.Init();
+        });
+
+    };
+
+</script>
+</html>
