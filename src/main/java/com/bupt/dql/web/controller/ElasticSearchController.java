@@ -31,7 +31,7 @@ public class ElasticSearchController extends BaseController {
 
     @RequestMapping("/index1")
     public String index1(){
-        return "es/index1";
+        return "es/index";
     }
 
     /**
