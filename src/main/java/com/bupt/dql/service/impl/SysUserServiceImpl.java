@@ -1,30 +1,32 @@
 package com.bupt.dql.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
+
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.bupt.dql.dao.SysUserMapper;
 import com.bupt.dql.service.ISysUserService;
-import com.bupt.dql.web.common.CommonAssistant;
+import com.bupt.dql.service.util.SysUserServiceUtil;
 import com.bupt.dql.web.common.JsonResult;
 import com.bupt.dql.web.pojo.entity.SysUserDO;
 import com.bupt.dql.web.pojo.vo.SysUserVO;
 import com.bupt.dql.web.query.SysUserQuery;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
-
-import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author: mai
  * @date: 2020/9/22
  */
 @Service
-public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserDO> implements ISysUserService{
+public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserDO> implements ISysUserService {
 
     @Resource
     private SysUserMapper sysUserMapper;
@@ -62,30 +64,35 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserDO> im
 
     @Override
     public JsonResult getList(SysUserQuery query) {
-//        System.out.println(query.getPage());
-//        System.out.println(query.getLimit());
         //查询条件
         QueryWrapper<SysUserDO> queryWrapper = new QueryWrapper<>();
         // 姓名/员工ID/用户名/手机号
         if (!StringUtils.isEmpty(query.getKeywords())) {
-            queryWrapper.like("name", query.getKeywords())
+            queryWrapper.and(wrapper -> wrapper.like("name", query.getKeywords())
                     .or().like("username", query.getKeywords())
-                    .or().like("phone", query.getKeywords())
-                    .or().eq("user_id", query.getKeywords());
+                    .or().eq("user_id", query.getKeywords())
+                    .or().eq("phone", query.getKeywords()));
+//            queryWrapper.like("name", query.getKeywords())
+//                    .or().like("username", query.getKeywords())
+//                    .or().eq("user_id", query.getKeywords())
+//                    .or().eq("phone", query.getKeywords());
         }
         // 性别:0女 1男
         if (query.getGender() != null) {
-            queryWrapper.eq("gender", query.getGender());
+            queryWrapper.and(wrapper -> wrapper.eq("gender", query.getGender()));
+//            queryWrapper.eq("gender", query.getGender());
         }
         // 状态：0正常 1禁用
         if (query.getStatus() != null) {
-            queryWrapper.eq("status", query.getStatus());
+            queryWrapper.and(wrapper -> wrapper.eq("status", query.getStatus()));
+//            queryWrapper.eq("status", query.getStatus());
         }
         // 创建人/更新人
         if (!StringUtils.isEmpty(query.getOperator())) {
-           // System.out.println("hello");
-            queryWrapper.like("operator", query.getOperator())
-                    .or().like("update_operator", query.getOperator());
+            queryWrapper.and(wrapper -> wrapper.like("operator", query.getOperator())
+                    .or().like("update_operator", query.getOperator()));
+//            queryWrapper.like("operator", query.getOperator())
+//                    .or().like("update_operator", query.getOperator());
         }
         //queryWrapper.eq("mark", 1);
         queryWrapper.orderByAsc("user_id");
@@ -99,7 +106,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserDO> im
             return JsonResult.success();
         }
         //数据封装
-        sysUserVOList = CommonAssistant.transform(sysUserDOList);
+        sysUserVOList = SysUserServiceUtil.transform(sysUserDOList);
         System.out.println(data.getTotal());
         return JsonResult.success("操作成功", sysUserVOList, data.getTotal());
     }
@@ -133,6 +140,19 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserDO> im
     @Override
     public boolean batchInsert(List<SysUserDO> sysUserDOList) {
         return this.saveBatch(sysUserDOList);
+    }
+
+    @Override
+    public long getUserId() {
+        QueryWrapper<SysUserDO> queryWrapper = new QueryWrapper<>();
+        queryWrapper.orderByDesc("user_id");
+
+        //查询数据
+        List<SysUserDO> sysUserDOList = sysUserMapper.selectList(queryWrapper);
+        if (CollectionUtils.isEmpty(sysUserDOList)) {
+            return 1;
+        }
+        return sysUserDOList.get(0).getUserId() + 1;
     }
 
 

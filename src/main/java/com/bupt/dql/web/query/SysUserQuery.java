@@ -1,6 +1,7 @@
 package com.bupt.dql.web.query;
 
 import com.bupt.dql.web.common.BaseQuery;
+
 import lombok.Data;
 
 /**

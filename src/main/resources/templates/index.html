@@ -29,20 +29,20 @@
             <li class="layui-nav-item" lay-unselect>
                 <a ew-event="refresh" title="刷新"><i class="layui-icon layui-icon-refresh-3"></i></a>
             </li>
-            <li class="layui-nav-item layui-hide-xs layui-this" lay-unselect><a nav-bind="xt1">系统管理</a></li>
-            <li class="layui-nav-item layui-hide-xs " lay-unselect><a nav-bind="xt2">店铺管理</a></li>
-            <li class="layui-nav-item layui-hide-xs " lay-unselect><a nav-bind="xt3">商品管理</a></li>
-            <li class="layui-nav-item layui-hide-xs " lay-unselect><a nav-bind="xt4">CMS管理</a></li>
-            <li class="layui-nav-item layui-hide-xs " lay-unselect><a nav-bind="xt5">用户中心</a></li>
-            <!-- 小屏幕下变为下拉形式 -->
-            <li class="layui-nav-item layui-hide-sm layui-show-xs-inline-block" lay-unselect>
-                <a>更多</a>
-                <dl class="layui-nav-child">
-                    <dd lay-unselect><a nav-bind="xt1">系统一</a></dd>
-                    <dd lay-unselect><a nav-bind="xt2">系统二</a></dd>
-                    <dd lay-unselect><a nav-bind="xt3">系统二</a></dd>
-                </dl>
-            </li>
+<!--            <li class="layui-nav-item layui-hide-xs layui-this" lay-unselect><a nav-bind="xt1">系统管理</a></li>-->
+<!--            <li class="layui-nav-item layui-hide-xs " lay-unselect><a nav-bind="xt2">店铺管理</a></li>-->
+<!--            <li class="layui-nav-item layui-hide-xs " lay-unselect><a nav-bind="xt3">商品管理</a></li>-->
+<!--            <li class="layui-nav-item layui-hide-xs " lay-unselect><a nav-bind="xt4">CMS管理</a></li>-->
+<!--            <li class="layui-nav-item layui-hide-xs " lay-unselect><a nav-bind="xt5">用户中心</a></li>-->
+<!--            &lt;!&ndash; 小屏幕下变为下拉形式 &ndash;&gt;-->
+<!--            <li class="layui-nav-item layui-hide-sm layui-show-xs-inline-block" lay-unselect>-->
+<!--                <a>更多</a>-->
+<!--                <dl class="layui-nav-child">-->
+<!--                    <dd lay-unselect><a nav-bind="xt1">系统一</a></dd>-->
+<!--                    <dd lay-unselect><a nav-bind="xt2">系统二</a></dd>-->
+<!--                    <dd lay-unselect><a nav-bind="xt3">系统二</a></dd>-->
+<!--                </dl>-->
+<!--            </li>-->
         </ul>
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item" lay-unselect>
@@ -82,92 +82,38 @@
     <div class="layui-side">
         <div class="layui-side-scroll">
             <ul class="layui-nav layui-nav-tree " nav-id="xt1" lay-filter="admin-side-nav" lay-shrink="_all" style="margin: 15px 0;">
+<!--                <li class="layui-nav-item">-->
+<!--                    <a><i class="layui-icon layui-icon-username"></i>&emsp;<cite>权限管理</cite></a>-->
+<!--                    <dl class="layui-nav-child">-->
+<!--                        <dd><a lay-href="/sysUser/index">人员管理</a></dd>-->
+<!--                        <dd><a lay-href="/es/index1">全文搜索</a></dd>-->
+<!--                        <dd><a lay-href="/menu/index">菜单管理</a></dd>-->
+<!--                        <dd><a lay-href="/operlog/index">操作日志</a></dd>-->
+<!--                        <dd><a lay-href="/loginlog/index">登录日志</a></dd>-->
+<!--                    </dl>-->
+<!--                </li>-->
                 <li class="layui-nav-item">
-                    <a><i class="layui-icon layui-icon-username"></i>&emsp;<cite>权限管理</cite></a>
+                    <a><i class="layui-icon layui-icon-home"></i>&emsp;<cite>全文搜索</cite></a>
+                    <dl class="layui-nav-child">
+                        <dd><a lay-href="/es/index1">全文搜索</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a><i class="layui-icon layui-icon-home"></i>&emsp;<cite>人员管理</cite></a>
                     <dl class="layui-nav-child">
                         <dd><a lay-href="/sysUser/index">人员管理</a></dd>
-                        <dd><a lay-href="/es/index1">全文搜索</a></dd>
-                        <dd><a lay-href="/menu/index">菜单管理</a></dd>
-                        <dd><a lay-href="/operlog/index">操作日志</a></dd>
-                        <dd><a lay-href="/loginlog/index">登录日志</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
-                    <a><i class="layui-icon layui-icon-home"></i>&emsp;<cite>布局管理</cite></a>
+                    <a><i class="layui-icon layui-icon-home"></i>&emsp;<cite>敏感词管理</cite></a>
                     <dl class="layui-nav-child">
-                        <dd><a lay-href="/layoutdesc/index">布局描述管理</a></dd>
-                        <dd><a lay-href="/layout/index">布局管理</a></dd>
+                        <dd><a lay-href="/messagetemplate/index">敏感词管理</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
-                    <a><i class="layui-icon layui-icon-home"></i>&emsp;<cite>配置管理</cite></a>
+                    <a><i class="layui-icon layui-icon-home"></i>&emsp;<cite>日志管理</cite></a>
                     <dl class="layui-nav-child">
-                        <dd><a lay-href="/configgroup/index">配置分组</a></dd>
-                        <dd><a lay-href="/config/index">配置管理</a></dd>
-                    </dl>
-                </li>
-                <li class="layui-nav-item">
-                    <a><i class="layui-icon layui-icon-home"></i>&emsp;<cite>消息管理</cite></a>
-                    <dl class="layui-nav-child">
-                        <dd><a lay-href="/messagetemplate/index">消息模板</a></dd>
-                        <dd><a lay-href="/message/index">消息记录</a></dd>
-                    </dl>
-                </li>
-                <li class="layui-nav-item">
-                    <a><i class="layui-icon layui-icon-home"></i>&emsp;<cite>应用中心</cite></a>
-                    <dl class="layui-nav-child">
-                        <dd><a lay-href="/link/index">友链管理</a></dd>
-                        <dd><a lay-href="/city/index">城市管理</a></dd>
-                        <dd><a lay-href="/crontab/index">定时任务</a></dd>
-                        <dd><a lay-href="/notice/index">通知公告</a></dd>
-                        <dd><a lay-href="/configweb/index">网站设置</a></dd>
-                    </dl>
-                </li>
-                <li class="layui-nav-item">
-                    <a><i class="layui-icon layui-icon-home"></i>&emsp;<cite>系统工具</cite></a>
-                    <dl class="layui-nav-child">
-                        <dd><a lay-href="/gentable/index">代码生成</a></dd>
-                    </dl>
-                </li>
-            </ul>
-            <ul class="layui-nav layui-nav-tree layui-hide" nav-id="xt2" lay-filter="admin-side-nav" lay-shrink="_all" style="margin: 15px 0;">
-                <li class="layui-nav-item">
-                    <a><i class="layui-icon layui-icon-home"></i>&emsp;<cite>店铺管理</cite></a>
-                    <dl class="layui-nav-child">
-                        <dd><a lay-href="/store/index">店铺管理</a></dd>
-                    </dl>
-                </li>
-            </ul>
-            <ul class="layui-nav layui-nav-tree layui-hide" nav-id="xt3" lay-filter="admin-side-nav" lay-shrink="_all" style="margin: 15px 0;">
-                <li class="layui-nav-item">
-                    <a><i class="layui-icon layui-icon-home"></i>&emsp;<cite>商品管理</cite></a>
-                    <dl class="layui-nav-child">
-                        <dd><a lay-href="/brandcompany/index">品牌商管理</a></dd>
-                        <dd><a lay-href="/brand/index">品牌管理</a></dd>
-                        <dd><a lay-href="/productcategory/index">商品分类</a></dd>
-                        <dd><a lay-href="/producttags/index">商品标签</a></dd>
-                        <dd><a lay-href="/productattributecategory/index">商品类型</a></dd>
-                        <dd><a lay-href="/productattribute/index">商品属性</a></dd>
-                        <dd><a lay-href="/productattributevalue/index">商品属性值</a></dd>
-                        <dd><a lay-href="/product/index">商品管理</a></dd>
-                    </dl>
-                </li>
-            </ul>
-            <ul class="layui-nav layui-nav-tree layui-hide" nav-id="xt4" lay-filter="admin-side-nav" lay-shrink="_all" style="margin: 15px 0;">
-                <li class="layui-nav-item">
-                    <a><i class="layui-icon layui-icon-home"></i>&emsp;<cite>文章管理</cite></a>
-                    <dl class="layui-nav-child">
-                        <dd><a lay-href="/article/index">文章管理</a></dd>
-                    </dl>
-                </li>
-            </ul>
-            <ul class="layui-nav layui-nav-tree layui-hide" nav-id="xt5" lay-filter="admin-side-nav" lay-shrink="_all" style="margin: 15px 0;">
-                <li class="layui-nav-item">
-                    <a><i class="layui-icon layui-icon-home"></i>&emsp;<cite>会员管理</cite></a>
-                    <dl class="layui-nav-child">
-                        <dd><a lay-href="/page/login">会员中心</a></dd>
-                        <dd><a lay-href="/userlevel/index">会员等级</a></dd>
-                        <dd><a lay-href="/useraddress/index">会员地址</a></dd>
+                        <dd><a lay-href="/messagetemplate/index">日志管理</a></dd>
                     </dl>
                 </li>
             </ul>
@@ -177,11 +123,6 @@
     <!-- 主体部分 -->
     <div class="layui-body"></div>
     <!-- 底部 -->
-    <div class="layui-footer layui-text">
-        copyright © 2020 <a href="http://www.javaweb.vip" target="_blank">javaweb.vip</a> all rights reserved.
-        <span style="margin-left: 100px;">技术支持：<a href="tencent://message/?uin=1175401194" target="_blank">1175401194</a></span>
-        <span class="pull-right">Version v1.6.1</span>
-    </div>
 </div>
 
 <!-- 加载动画 -->
@@ -201,7 +142,7 @@
 
         // 默认加载主页
         index.loadHome({
-            menuPath: '/index/login',
+            menuPath: '/es/index',
             menuName: '<i class="layui-icon layui-icon-home"></i>'
         });
 

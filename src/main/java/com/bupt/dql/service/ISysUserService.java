@@ -1,11 +1,11 @@
 package com.bupt.dql.service;
 
+import java.util.List;
+
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.bupt.dql.web.common.JsonResult;
 import com.bupt.dql.web.pojo.entity.SysUserDO;
 import com.bupt.dql.web.query.SysUserQuery;
-
-import java.util.List;
 
 public interface ISysUserService extends IService<SysUserDO> {
 
@@ -36,5 +36,11 @@ public interface ISysUserService extends IService<SysUserDO> {
     boolean insertOrUpdate(SysUserDO sysUserDO);
 
     boolean batchInsert(List<SysUserDO> sysUserDOList);
+
+    /**
+     * 返回新增user_id
+     * @return
+     */
+    long getUserId();
 
 }

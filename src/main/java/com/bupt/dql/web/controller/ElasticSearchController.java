@@ -25,12 +25,12 @@ public class ElasticSearchController extends BaseController {
     private ElasticsearchService elasticsearchService;
 
     @RequestMapping("/search")
-    public String search(){
+    public String search() {
         return "elasticsearch/search";
     }
 
-    @RequestMapping("/index1")
-    public String index1(){
+    @RequestMapping("/index")
+    public String index1() {
         return "es/index";
     }
 
@@ -41,7 +41,7 @@ public class ElasticSearchController extends BaseController {
      */
     @RequestMapping("/matchQuery")
     @ResponseBody
-    public List<ElasticCodeVO> matchQuery(ElasticSearchDTO param){
+    public List<ElasticCodeVO> matchQuery(ElasticSearchDTO param) {
         System.out.println(param.getIndex() + param.getKeyWord());
         List<ElasticCodeVO> response = elasticsearchService.query(param);
         return response;

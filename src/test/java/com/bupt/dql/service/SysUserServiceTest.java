@@ -45,19 +45,19 @@ public class SysUserServiceTest extends TestBase {
     @Test
     public void test03() throws ParseException {
         long curTime = System.currentTimeMillis();
-        String birth = "1996-09-23";
-        String operator = "邓权亮";
+        String birth = "1996-01-23";
+        String operator = "mai";
         String password = "123456";
         List<SysUserDO> sysUserDOList = new ArrayList<>();
-        for(int i = 1021; i <= 1030; i++) {
+        for(int i = 1041; i <= 1050; i++) {
             SysUserDO sysUserDO = new SysUserDO();
             sysUserDO.setUserId(Long.valueOf(i));
-            sysUserDO.setName("杨康");
-            sysUserDO.setUsername("mai" + i);
+            sysUserDO.setName("李白");
+            sysUserDO.setUsername("libai" + i);
             sysUserDO.setPassword(MD5Util.encrypt(password));
-            sysUserDO.setGender(i % 2);
-            sysUserDO.setPhone("18810165025");
-            sysUserDO.setEmail("1372565062@qq.com");
+            sysUserDO.setGender((i + 1) % 2);
+            sysUserDO.setPhone("15901893257");
+            sysUserDO.setEmail("1985529368@qq.com");
             sysUserDO.setBirthDay(DateUtil.stringToDate(birth).getTime());
             sysUserDO.setLoginIp("127.0.0.1");
             sysUserDO.setLoginTime(curTime);
@@ -67,7 +67,8 @@ public class SysUserServiceTest extends TestBase {
             sysUserDO.setCtime(curTime);
             sysUserDO.setUtime(curTime);
             sysUserDO.setOperator(operator);
-            sysUserDO.setRemark("");
+            sysUserDO.setRemark("测试数据");
+            sysUserDO.setUpdateOperator(operator);
             sysUserDOList.add(sysUserDO);
         }
         //批量
@@ -80,8 +81,8 @@ public class SysUserServiceTest extends TestBase {
     public void test04() throws ParseException {
         long curTime = System.currentTimeMillis();
         int i = 1004;
-        String birth = "1995-08-23";
-        String operator = "邓权亮";
+        String birth = "1995-10-23";
+        String operator = "李白";
         String password = "123456";
         SysUserDO sysUserDO = new SysUserDO();
         sysUserDO.setUserId(Long.valueOf(i));
@@ -89,8 +90,8 @@ public class SysUserServiceTest extends TestBase {
         sysUserDO.setUsername("mai" + i);
         sysUserDO.setPassword(MD5Util.encrypt(password));
         sysUserDO.setGender(i % 2);
-        sysUserDO.setPhone("15901893257");
-        sysUserDO.setEmail("1372565062@qq.com");
+        sysUserDO.setPhone("18810165025");
+        sysUserDO.setEmail("1985529368@qq.com");
         sysUserDO.setBirthDay(DateUtil.stringToDate(birth).getTime());
         sysUserDO.setLoginIp("127.0.0.1");
         sysUserDO.setLoginTime(curTime);

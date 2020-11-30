@@ -14,6 +14,7 @@ public class DateUtilTest {
     @Test
     public void test01(){
         long now = System.currentTimeMillis();
+        System.out.println(now);
         System.out.println(DateUtil.longToDay(now));
         System.out.println(DateUtil.longToTime(now));
     }

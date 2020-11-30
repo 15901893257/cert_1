@@ -1,34 +1,37 @@
 package com.bupt.dql.web.controller;
 
-import com.bupt.dql.service.LoginService;
-import com.bupt.dql.web.exception.ParamException;
-import com.bupt.dql.web.common.JsonResult;
-import com.bupt.dql.web.pojo.dto.LoginDTO;
-import com.bupt.dql.web.pojo.entity.SysUserDO;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.bupt.dql.service.LoginService;
+import com.bupt.dql.web.common.JsonResult;
+import com.bupt.dql.web.exception.ParamException;
+import com.bupt.dql.web.pojo.dto.LoginDTO;
+import com.bupt.dql.web.pojo.entity.SysUserDO;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author: mai
  * @date: 2020/9/22
  */
+@Slf4j
 @Controller
 public class LoginController {
 
     @Resource
     private LoginService loginService;
 
-    /**
-     *  登录首页
-     *
-     * @return
-     */
     @GetMapping("/login")
-    public String login(){
+    public String login() {
         return "login";
     }
 
@@ -43,9 +46,13 @@ public class LoginController {
     @PostMapping("/login")
     @ResponseBody
     public JsonResult login(@RequestBody LoginDTO loginDTO, HttpServletRequest request, Model model) throws ParamException {
-        System.out.println(loginDTO);
+        log.info("登录用户，loginDTO: {}", loginDTO);
         SysUserDO sysUserDO = loginService.login(loginDTO, request);
         model.addAttribute("user", sysUserDO);
+        HttpSession session = request.getSession(true);
+        //删除以前的
+        session.removeAttribute("username");
+        session.setAttribute("username", loginDTO.getUsername());
         return JsonResult.success();
     }
 
@@ -54,7 +61,8 @@ public class LoginController {
      * @return
      */
     @GetMapping("/success")
-    public String success(){
+    public String success() {
+        log.info("success");
         return "index";
     }
 
@@ -63,7 +71,7 @@ public class LoginController {
      * @return
      */
     @GetMapping("/register")
-    public String register(){
+    public String register() {
         System.out.println("注册");
         return "register";
     }
