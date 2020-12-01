@@ -13,7 +13,7 @@ public class ElasticCodeVO {
 
     private String filename;
 
-    private String user_filename;
+    private String userFileName;
 
     private String code;
 

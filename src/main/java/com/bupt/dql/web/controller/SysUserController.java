@@ -1,5 +1,7 @@
 package com.bupt.dql.web.controller;
 
+import java.text.ParseException;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.bupt.dql.common.util.DateUtil;
 import com.bupt.dql.common.util.MD5Util;
 import com.bupt.dql.service.ISysUserService;
 import com.bupt.dql.web.common.BaseController;
@@ -36,13 +39,12 @@ public class SysUserController extends BaseController {
     @PostMapping("/list")
     @ResponseBody
     public JsonResult list(SysUserQuery query) {
-        System.out.println(query);
         return sysUserService.getList(query);
     }
 
     @ResponseBody
     @PostMapping("/add")
-    public JsonResult update(@RequestBody SysUserVO sysUserVO, HttpServletRequest request) {
+    public JsonResult add(@RequestBody SysUserVO sysUserVO, HttpServletRequest request) throws ParseException {
         log.info("注册用户，sysUserVO: {}", sysUserVO);
         //存入会话session
         HttpSession session = request.getSession();
@@ -58,9 +60,10 @@ public class SysUserController extends BaseController {
         sysUserDO.setUtime(curTime);
         sysUserDO.setCtime(curTime);
         sysUserDO.setUType(0);
+        sysUserDO.setBirthDay(DateUtil.stringToLong(sysUserVO.getBirthDay()));
 
         sysUserService.insertOrUpdate(sysUserDO);
-        return JsonResult.success("提交成功");
+        return JsonResult.success("新增用户成功");
     }
 //    @GetMapping("/index")
 //    public String index(){

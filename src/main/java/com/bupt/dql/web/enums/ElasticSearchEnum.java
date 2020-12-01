@@ -1,8 +1,7 @@
 package com.bupt.dql.web.enums;
 
-import com.google.common.base.Strings;
-import lombok.Data;
-import org.apache.commons.lang.StringUtils;
+
+import org.apache.commons.lang3.StringUtils;
 
 /**
  *  es搜索类型
@@ -13,12 +12,12 @@ public enum ElasticSearchEnum {
 
     private String name;
 
-    private ElasticSearchEnum(int code, String name){
+    private ElasticSearchEnum(int code, String name) {
         this.code = code;
         this.name = name;
     }
 
-    public static String getName(int code){
+    public static String getName(int code) {
         for (ElasticSearchEnum searchEnum : ElasticSearchEnum.values()) {
             if (searchEnum.code == code) {
                 return searchEnum.getName();
@@ -27,11 +26,11 @@ public enum ElasticSearchEnum {
         return StringUtils.EMPTY;
     }
 
-    public int getCode(){
+    public int getCode() {
         return code;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 }

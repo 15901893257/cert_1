@@ -1,6 +1,5 @@
 package com.bupt.dql.common.util;
 
-import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -57,5 +56,11 @@ public class DateUtil {
         }
         Date date = simpleDateFormat.parse(time);
         return date;
+    }
+
+    public static long stringToLong(String time) throws ParseException {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DAY_FORMAT);
+        Date date = simpleDateFormat.parse(time);
+        return date.getTime();
     }
 }

@@ -1,15 +1,13 @@
 package com.bupt.dql.service.elasticsearch;
 
-import com.bupt.dql.constant.GlobalConstant;
-import com.bupt.dql.constant.elasticsearch.ElasticsearchConstant;
-import com.bupt.dql.web.enums.ElasticIndexEnum;
-import com.bupt.dql.web.enums.IndexEnum;
-import com.bupt.dql.web.exception.ParamException;
-import com.bupt.dql.web.pojo.dto.ElasticSearchDTO;
-import com.bupt.dql.web.pojo.vo.ElasticCodeVO;
-import com.google.gson.Gson;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang.StringUtils;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
+
+import org.apache.commons.lang3.StringUtils;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.RequestOptions;
@@ -22,11 +20,16 @@ import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightField;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import com.bupt.dql.constant.GlobalConstant;
+import com.bupt.dql.constant.elasticsearch.ElasticsearchConstant;
+import com.bupt.dql.web.enums.ElasticIndexEnum;
+import com.bupt.dql.web.enums.IndexEnum;
+import com.bupt.dql.web.exception.ParamException;
+import com.bupt.dql.web.pojo.dto.ElasticSearchDTO;
+import com.bupt.dql.web.pojo.vo.ElasticCodeVO;
+import com.google.gson.Gson;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author: mai
@@ -41,7 +44,7 @@ public class ElasticsearchService {
     @Resource
     private RestHighLevelClient restHighLevelClient;
 
-    public List<ElasticCodeVO> query(ElasticSearchDTO param){
+    public List<ElasticCodeVO> query(ElasticSearchDTO param) {
         check(param);
 
         SearchRequest searchRequest = new SearchRequest(ElasticIndexEnum.getName(param.getIndex()));
@@ -77,9 +80,9 @@ public class ElasticsearchService {
         if (searchResponse == null) {
             return elasticCodeVOList;
         }
-        for(SearchHit hit : searchResponse.getHits()){
+        for (SearchHit hit : searchResponse.getHits()) {
 //                System.out.println(hit.getSourceAsString());
-            ElasticCodeVO elasticCodeVO = gson.fromJson(hit.getSourceAsString(),ElasticCodeVO.class);
+            ElasticCodeVO elasticCodeVO = gson.fromJson(hit.getSourceAsString(), ElasticCodeVO.class);
 
             Map<String, HighlightField> highlightFieldMap = hit.getHighlightFields();
             HighlightField highlightField = highlightFieldMap.get("code");
@@ -96,11 +99,11 @@ public class ElasticsearchService {
 
             elasticCodeVOList.add(elasticCodeVO);
         }
-        log.info("搜索时间："+time);
+        log.info("搜索时间：" + time);
         return elasticCodeVOList;
     }
 
-    private void setSearchSourceBuilder(SearchSourceBuilder searchSourceBuilder, ElasticSearchDTO param){
+    private void setSearchSourceBuilder(SearchSourceBuilder searchSourceBuilder, ElasticSearchDTO param) {
         //模糊查询
         if (param.getType() == 0) {
             searchSourceBuilder.query(QueryBuilders.matchQuery(ElasticsearchConstant.CODE_FILED, param.getKeyWord()));
@@ -110,7 +113,7 @@ public class ElasticsearchService {
         }
     }
 
-    private void check(ElasticSearchDTO param){
+    private void check(ElasticSearchDTO param) {
         if (param == null) {
             throw new ParamException(GlobalConstant.PARAM_ERROR);
         }

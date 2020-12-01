@@ -28,4 +28,13 @@ public class DateUtilTest {
         System.out.println(DateUtil.stringToDate(birth));
         System.out.println(DateUtil.stringToDate(day));
     }
+
+    @Test
+    public void testStringToLong() throws ParseException {
+        String time = "2020-08-23";
+        long a = DateUtil.stringToLong(time);
+        System.out.println(a);
+        String day = DateUtil.longToDay(a);
+        System.out.println(day);
+    }
 }

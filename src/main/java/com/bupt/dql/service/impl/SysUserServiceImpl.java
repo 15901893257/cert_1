@@ -21,10 +21,13 @@ import com.bupt.dql.web.pojo.entity.SysUserDO;
 import com.bupt.dql.web.pojo.vo.SysUserVO;
 import com.bupt.dql.web.query.SysUserQuery;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * @author: mai
  * @date: 2020/9/22
  */
+@Slf4j
 @Service
 public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserDO> implements ISysUserService {
 
@@ -64,6 +67,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserDO> im
 
     @Override
     public JsonResult getList(SysUserQuery query) {
+        log.info("SysUserQuery查询条件， query:{}", query);
         //查询条件
         QueryWrapper<SysUserDO> queryWrapper = new QueryWrapper<>();
         // 姓名/员工ID/用户名/手机号
