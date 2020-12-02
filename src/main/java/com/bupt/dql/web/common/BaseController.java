@@ -1,12 +1,12 @@
 package com.bupt.dql.web.common;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author: mai
@@ -38,7 +38,7 @@ public class BaseController {
      * @return
      */
     @GetMapping("/edit")
-    public String edit(Integer id, Model model) {
+    public String edit(Long id, Model model) {
         return this.render();
     }
 

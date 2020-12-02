@@ -29,13 +29,13 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">关键字</label>
                     <div class="layui-input-block">
-                        <input type="text" name="keyword" id="keyword" required  lay-verify="required" placeholder="请输入关键字或正则表达式" autocomplete="off" class="layui-input">
+                        <input type="text" name="keyword" id="keyword" th:value="${info?.keyword}" required  lay-verify="required" placeholder="请输入关键字或正则表达式" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">搜索类型</label>
                     <div class="layui-input-inline">
-                        <select name="keyType" id="keyType" lay-verify="required">
+                        <select name="keyType" id="keyType" th:value="${info?.keyType}" lay-verify="required">
                             <option value="0"></option>
                             <option value="0">模糊匹配</option>
                             <option value="1">正则表达式</option>
@@ -45,7 +45,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">索引</label>
                     <div class="layui-input-inline">
-                        <select name="indexType" id="indexType" lay-verify="required">
+                        <select name="indexType" id="indexType" th:value="${info?.indexType}" lay-verify="required">
                             <option value="-1">全部</option>
                             <option value="0">C</option>
                             <option value="1">C++</option>
@@ -60,7 +60,7 @@
                 <div class="layui-form-item layui-form-text">
                     <label class="layui-form-label">描述</label>
                     <div class="layui-input-block">
-                        <textarea name="description" id="description" placeholder="请输入描述内容" class="layui-textarea"></textarea>
+                        <textarea name="description" id="description" th:value="${info?.description}" placeholder="请输入描述内容" class="layui-textarea"></textarea>
                     </div>
                 </div>
                 <div class="layui-form-item">

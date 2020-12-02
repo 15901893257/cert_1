@@ -58,7 +58,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserDO> im
 
         //查询数据
         IPage<SysUserDO> page = new Page<>(query.getPage(), query.getLimit());
-        System.out.println(query.getPage() + ": " + query.getLimit());
+//        System.out.println(query.getPage() + ": " + query.getLimit());
         IPage<SysUserDO> data = sysUserMapper.selectPage(page, queryWrapper);
         List<SysUserDO> sysUserDOList = data.getRecords();
         return sysUserDOList;
@@ -111,7 +111,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserDO> im
         }
         //数据封装
         sysUserVOList = SysUserServiceUtil.transform(sysUserDOList);
-        System.out.println(data.getTotal());
+//        System.out.println(data.getTotal());
         return JsonResult.success("操作成功", sysUserVOList, data.getTotal());
     }
 
@@ -157,6 +157,22 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUserDO> im
             return 1;
         }
         return sysUserDOList.get(0).getUserId() + 1;
+    }
+
+    @Override
+    public SysUserDO queryById(Long id) {
+        SysUserDO sysUserDO = this.getById(id);
+        return sysUserDO;
+    }
+
+    @Override
+    public int deleteById(Long id) {
+        return sysUserMapper.deleteById(id);
+    }
+
+    @Override
+    public int batchDelete(List<Long> ids) {
+        return sysUserMapper.deleteBatchIds(ids);
     }
 
 

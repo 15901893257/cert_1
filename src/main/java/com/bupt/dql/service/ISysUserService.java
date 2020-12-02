@@ -43,4 +43,20 @@ public interface ISysUserService extends IService<SysUserDO> {
      */
     long getUserId();
 
+    SysUserDO queryById(Long id);
+
+    /**
+     * 根据id删除
+     * @param id
+     * @return
+     */
+    int deleteById(Long id);
+
+    /**
+     * 批量删除
+     * @param ids
+     * @return
+     */
+    int batchDelete(List<Long> ids);
+
 }

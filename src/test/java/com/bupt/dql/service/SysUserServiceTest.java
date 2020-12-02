@@ -1,5 +1,14 @@
 package com.bupt.dql.service;
 
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.apache.commons.lang3.StringUtils;
+import org.junit.Test;
+
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -11,13 +20,7 @@ import com.bupt.dql.web.common.JsonResult;
 import com.bupt.dql.web.pojo.entity.SysUserDO;
 import com.bupt.dql.web.pojo.vo.SysUserVO;
 import com.bupt.dql.web.query.SysUserQuery;
-import org.apache.commons.lang3.StringUtils;
-import org.junit.Test;
-
-import javax.annotation.Resource;
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.List;
+import com.google.common.collect.Lists;
 
 /**
  * @author: mai
@@ -31,6 +34,24 @@ public class SysUserServiceTest extends TestBase {
     @Resource
     private SysUserMapper sysUserMapper;
 
+
+    @Test
+    public void testDeleteById() {
+        long id1 = 1L;  //存在
+        long id2 = 100L;  //不存在
+        int a = sysUserService.deleteById(id1);
+        int b = sysUserService.deleteById(id2);
+        System.out.println(a);
+        System.out.println(b);
+    }
+
+    @Test
+    public void testBatchDelete() {
+        List<Long> ids = Lists.newArrayList(2L, 3L, 4L, 40L);
+        int a = sysUserService.batchDelete(ids);
+        System.out.println(a);
+    }
+
     @Test
     public void test01(){
         SysUserDO sysUserDO = sysUserService.querySysUserByUserName("dql");
@@ -40,6 +61,14 @@ public class SysUserServiceTest extends TestBase {
             System.out.println("没有该用户");
         }
 
+    }
+
+    @Test
+    public void testQueryById() {
+        SysUserDO sysUserDO1 = sysUserService.queryById(1L);
+        SysUserDO sysUserDO2 = sysUserService.queryById(2L);
+        System.out.println(sysUserDO1);
+        System.out.println(sysUserDO2);
     }
 
     @Test

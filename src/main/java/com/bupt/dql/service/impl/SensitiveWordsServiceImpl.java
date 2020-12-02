@@ -20,6 +20,7 @@ import com.bupt.dql.dao.SensitiveWordsMapper;
 import com.bupt.dql.service.ISensitiveService;
 import com.bupt.dql.web.common.JsonResult;
 import com.bupt.dql.web.pojo.entity.SensitiveWordsDO;
+import com.bupt.dql.web.pojo.entity.SysUserDO;
 import com.bupt.dql.web.pojo.vo.SensitiveWordsVO;
 import com.bupt.dql.web.query.SensitiveWordsQuery;
 
@@ -76,6 +77,21 @@ public class SensitiveWordsServiceImpl extends ServiceImpl<SensitiveWordsMapper,
     @Override
     public boolean batchInsert(List<SensitiveWordsDO> sensitiveWordsDOList) {
         return this.saveBatch(sensitiveWordsDOList);
+    }
+
+    @Override
+    public SensitiveWordsDO queryById(Long id) {
+        return sensitiveWordsMapper.selectById(id);
+    }
+
+    @Override
+    public int deleteById(Long id) {
+        return sensitiveWordsMapper.deleteById(id);
+    }
+
+    @Override
+    public int batchDelete(List<Long> ids) {
+        return sensitiveWordsMapper.deleteBatchIds(ids);
     }
 
     private List<SensitiveWordsVO> transform(List<SensitiveWordsDO> sensitiveWordsDOList) {
