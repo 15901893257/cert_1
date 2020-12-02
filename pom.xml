@@ -25,6 +25,11 @@
             <!--<artifactId>pagehelper-spring-boot-starter</artifactId>-->
             <!--<version>1.2.5</version>-->
         <!--</dependency>-->
+        <!-- aop -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
         <!--mybatis-plus 起始依赖 -->
         <dependency>
             <groupId>com.baomidou</groupId>

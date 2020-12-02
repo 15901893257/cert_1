@@ -10,7 +10,7 @@ layui.use(['func'], function () {
             {type: 'checkbox', fixed: 'left'}
             , {field: 'userId', width: 100, title: '员工ID', align: 'center', sort: true, fixed: 'left'}
             , {field: 'name', width: 100, title: '姓名', align: 'center'}
-            , {field: 'username', width: 100, title: '用户名', align: 'center'}
+            , {field: 'username', width: 200, title: '用户名', align: 'center'}
             , {field: 'gender', width: 60, title: '性别', align: 'center', templet(d) {
                 var cls = "";
                 var genderName;

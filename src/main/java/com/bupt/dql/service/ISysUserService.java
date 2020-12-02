@@ -58,5 +58,4 @@ public interface ISysUserService extends IService<SysUserDO> {
      * @return
      */
     int batchDelete(List<Long> ids);
-
 }

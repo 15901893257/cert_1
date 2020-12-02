@@ -1,5 +1,7 @@
 package com.bupt.dql.test;
 
+import java.util.Random;
+
 import org.junit.Test;
 
 /**
@@ -10,6 +12,9 @@ public class LocalHostTest {
 
     @Test
     public void test() {
-
+        Random random = new Random();
+        for (int i = 0; i < 20; i++) {
+            System.out.println(random.nextInt(2));
+        }
     }
 }

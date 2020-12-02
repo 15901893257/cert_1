@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.bupt.dql.common.annotation.Log;
 import com.bupt.dql.service.LoginService;
+import com.bupt.dql.web.LoginLogConstant;
 import com.bupt.dql.web.common.JsonResult;
 import com.bupt.dql.web.exception.ParamException;
 import com.bupt.dql.web.pojo.dto.LoginDTO;
@@ -43,6 +45,7 @@ public class LoginController {
      * @return
      * @throws ParamException
      */
+    @Log(value = LoginLogConstant.LOGIN)
     @PostMapping("/login")
     @ResponseBody
     public JsonResult login(@RequestBody LoginDTO loginDTO, HttpServletRequest request, Model model) throws ParamException {
@@ -72,8 +75,16 @@ public class LoginController {
      */
     @GetMapping("/register")
     public String register() {
-        System.out.println("注册");
         return "register";
     }
 
+    /**
+     * 退出退出系统
+     * @return
+     */
+    @Log(value = LoginLogConstant.LOGOUT)
+    @GetMapping("/logout")
+    public String logout() {
+        return "login";
+    }
 }

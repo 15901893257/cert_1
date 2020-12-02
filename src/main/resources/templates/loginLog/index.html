@@ -36,20 +36,9 @@
             <!-- 表格工具栏 -->
             <form class="layui-form toolbar">
                 <div class="layui-form-item">
-                    <!-- 索引下拉单选 -->
                     <div class="layui-inline">
                         <div class="layui-input-inline">
-                            <!-- 下拉单选 -->
-                            <select name="keyType" id="keyType"  lay-verify="" lay-search="" lay-filter="status" class="layui-input">
-                                <option value='-1'>【请选择搜索类型】</option>
-                                <option value='0'>模糊匹配</option>
-                                <option value='1'>正则表达式</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="layui-inline">
-                        <div class="layui-input-inline">
-                            <input type="text" name="operator" placeholder="请输入创建人/更新人" autocomplete="off"
+                            <input type="text" name="username" placeholder="请输入登陆账号或账号名" autocomplete="off"
                                    class="layui-input">
                         </div>
                     </div>
@@ -57,16 +46,22 @@
                     <div class="layui-inline">
                         <div class="layui-input-inline">
                             <!-- 下拉单选 -->
-                            <select name="indexType" id="indexType"  lay-verify="" lay-search="" lay-filter="status" class="layui-input">
-                                <option value='-1'>【请选择索引】</option>
-                                <option value='-1'>全部</option>
-                                <option value='0'>C</option>
-                                <option value='1'>C++</option>
-                                <option value='2'>C#</option>
-                                <option value='3'>Java</option>
-                                <option value='4'>JavaScript</option>
-                                <option value='5'>Python</option>
-                                <option value='6'>Ruby</option>
+                            <select name="loginType" id="loginType"  lay-verify="" lay-search="" lay-filter="status" class="layui-input">
+                                <option value=''>【请选择类型】</option>
+                                <option value='0'>登陆系统</option>
+                                <option value='1'>退出系统</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- 索引下拉单选 -->
+                    <div class="layui-inline">
+                        <div class="layui-input-inline">
+                            <!-- 下拉单选 -->
+                            <select name="result" id="result"  lay-verify="" lay-search="" lay-filter="status" class="layui-input">
+                                <option value=''>【请选择结果】</option>
+                                <option value='0'>成功</option>
+                                <option value='1'>失败</option>
                             </select>
                         </div>
                     </div>
@@ -75,8 +70,6 @@
                             <button class="layui-btn" lay-submit="" lay-filter="searchForm" id="search"><i
                                     class="layui-icon">&#xe615;</i>查询
                             </button>
-                            <a lay-href="/words/edit" class="layui-btn btnOption  layui-btn-small btnAdd" id="add"
-                               data-param='[]' lay-event="add"><i class="layui-icon layui-icon-add-1"></i>添加敏感词</a>
                             <a href="javascript:"
                                class="layui-btn btnOption layui-btn-danger layui-btn-small btnBatchDrop" id="batchDrop"
                                data-param="[]" lay-event="batchDrop"><i
@@ -91,17 +84,14 @@
 
             <!-- 表格操作列 -->
             <script type="text/html" id="toolBar">
-                <a class="layui-btn layui-btn-xs btnEdit" lay-event="edit" title="编辑"><i
-                        class="layui-icon">&#xe630;</i>编辑</a>
                 <a class="layui-btn layui-btn-danger layui-btn-xs btnDel" lay-event="del" title="删除"><i
                         class="layui-icon">&#xe630;</i>删除</a>
             </script>
-
-            <!-- 状态 -->
-            <script type="text/html" id="statusTpl">
-                <input type="checkbox" name="status" value="{{ d.id }}" lay-skin="switch" lay-text="正常|禁用"
-                       lay-filter="status" {{ d.status== 0 ? 'checked' : '' }} >
-            </script>
+<!--            &lt;!&ndash; 状态 &ndash;&gt;-->
+<!--            <script type="text/html" id="statusTpl">-->
+<!--                <input type="checkbox" name="status" value="{{ d.id }}" lay-skin="switch" lay-text="正常|禁用"-->
+<!--                       lay-filter="status" {{ d.status== 0 ? 'checked' : '' }} >-->
+<!--            </script>-->
         </div>
     </div>
 </div>
