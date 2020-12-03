@@ -1,17 +1,15 @@
 package com.bupt.dql.elasticsearch.test;
 
-import com.bupt.dql.file.FileAPI;
-import org.elasticsearch.action.bulk.BulkProcessor;
-import org.elasticsearch.action.index.IndexRequest;
-import org.elasticsearch.common.xcontent.XContentBuilder;
-import org.elasticsearch.common.xcontent.XContentFactory;
-import org.junit.Test;
-
 import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+
+import org.elasticsearch.action.bulk.BulkProcessor;
+import org.elasticsearch.action.index.IndexRequest;
+import org.junit.Test;
+
+import com.bupt.dql.file.FileAPI;
 
 /**
  * @author: mai
@@ -26,6 +24,36 @@ public class UploadFileToES {
 
 
 
+    private void readFile(String path) {
+        File file = new File(path);
+        if (file.exists()) {
+            File[] files = file.listFiles();
+            if (files == null || files.length == 0) {
+                System.out.println("文件夹为空");
+                return;
+            } else {
+                for (File file1 : files) {
+                    if (file1.isDirectory()) {
+                        readFile(file1.getAbsolutePath());
+                    } else if(file1.isFile()){
+                        String filePath = file1.getAbsolutePath();
+                        String[] paths = filePath.split("/");
+                        String fileName = "MSSCRS";
+                        if (paths.length >= 7) {
+                            fileName = paths[6];
+                        }
+                        System.out.println("path: " + fileAPI.readFile(file1).toString());
+                    }
+                }
+            }
+        }
+    }
+
+    @Test
+    public void testFileApp() {
+        String path = "/Users/dengquanliang/data/project/ideaProject";
+        readFile(path);
+    }
     /**
      * 遍历上传项目所有java文件至es
      * 将进程添加至 bulkProcessor
@@ -44,33 +72,16 @@ public class UploadFileToES {
                     } else if(file1.isFile()){
                         String filePath = file1.getAbsolutePath();
 //                        System.out.println(file1);
-                        String[] a = filePath.split("\\\\");
-                        String user_filename = a[6]+"/"+file1.getName();
-                        String type = a[5];
+                        String[] paths = filePath.split("/");
+                        String fileName = "MSSCRS";
+                        if (paths.length >= 7) {
+                            fileName = paths[6];
+                        }
                         String code = fileAPI.readFile(file1).toString();
                         Map<String,Object> map = new HashMap<String,Object>();
-                        map.put("type",type);
-                        map.put("user_filename",user_filename);
+                        map.put("filename",fileName + "/" + file1.getName());
                         map.put("code",code);
-                        bulkProcessor.add(new IndexRequest("test2").source(map));
-
-//                        XContentBuilder xContentBuilder = null;
-//                        try {
-//                            xContentBuilder = XContentFactory.jsonBuilder()
-//                                    .startObject()
-//                                    .field("type",type)
-//                                    .field("user_filename", user_filename)
-//                                    .field("code", code)
-//                                    .endObject();
-//                            bulkProcessor.add(new IndexRequest("test2").source(xContentBuilder));
-//                        } catch (IOException e) {
-//                            e.printStackTrace();
-//                        }finally {
-//                            if (xContentBuilder != null){
-//                                xContentBuilder.close();
-//                            }
-//                        }
-
+                        bulkProcessor.add(new IndexRequest("java").source(map));
                         n++;
                     }
                 }
@@ -120,6 +131,6 @@ public class UploadFileToES {
 
     @Test
     public void testExcuteBulkprocessor(){
-        excuteBulkprocessor("F:\\dql\\data\\html\\coding\\C_C++");
+        excuteBulkprocessor("/Users/dengquanliang/data/project/ideaProject");
     }
 }

@@ -64,7 +64,7 @@ public class ElasticsearchService {
         searchSourceBuilder.size(ElasticsearchConstant.ES_RESULT_SIZE);
         searchSourceBuilder.sort(ElasticsearchConstant.ORDER_FIELD);
         //设置返回的字段，过滤code
-        searchSourceBuilder.fetchSource(ElasticsearchConstant.USER_FILENAME_FILED, ElasticsearchConstant.CODE_FILED);
+        searchSourceBuilder.fetchSource(ElasticsearchConstant.FILENAME, ElasticsearchConstant.CODE_FILED);
         searchRequest.source(searchSourceBuilder);
         //开始搜索时间
         long startTime = System.currentTimeMillis();

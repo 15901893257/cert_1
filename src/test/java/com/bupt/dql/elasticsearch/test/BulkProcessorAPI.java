@@ -57,9 +57,7 @@ public class BulkProcessorAPI {
     public RestHighLevelClient getClient() {
         RestHighLevelClient client = new RestHighLevelClient(
                 RestClient.builder(
-                        new HttpHost(host, 9200, "http"),
-                        new HttpHost(host1, 9200, "http"),
-                        new HttpHost(host2, 9200, "http")
+                        new HttpHost("localhost", 9200, "http")
                 )
         );
         return client;

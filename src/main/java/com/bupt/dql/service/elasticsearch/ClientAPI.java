@@ -1,12 +1,13 @@
 package com.bupt.dql.service.elasticsearch;
 
-import com.bupt.dql.constant.elasticsearch.ElasticsearchConstant;
+import static com.bupt.dql.constant.elasticsearch.ElasticsearchConstant.ES_IP_ADDRESS;
+import static com.bupt.dql.constant.elasticsearch.ElasticsearchConstant.PORT;
+
 import org.apache.http.HttpHost;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 
 /**
  * @author: mai
@@ -21,7 +22,7 @@ public class ClientAPI {
     public RestHighLevelClient getClient() {
         RestHighLevelClient restHighLevelClient = new RestHighLevelClient(
                 RestClient.builder(
-                        new HttpHost(ElasticsearchConstant.ES_IP_ADDRESS, 9200, "http")
+                        new HttpHost(ES_IP_ADDRESS, PORT, "http")
                 )
         );
         return restHighLevelClient;
