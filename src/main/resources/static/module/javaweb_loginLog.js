@@ -29,8 +29,8 @@ layui.use(['func'], function () {
                     return '<span class="layui-btn ' + cls + ' layui-btn-xs">'+loginType+'</span>';
                 }}
             , {field: 'loginIp', width: 100, title: '登录IP地址', align: 'center'}
-            , {field: 'loginTime', width: 200, title: '登陆时间', align: 'center'}
-            , {field: 'result', width: 100, title: '操作类型', align: 'center', templet(d) {
+            , {field: 'loginTime', width: 200, title: '操作时间', align: 'center'}
+            , {field: 'result', width: 100, title: '操作结果', align: 'center', templet(d) {
                     var cls = "";
                     var result;
                     if (d.result == 1) {

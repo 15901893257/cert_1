@@ -1,9 +1,13 @@
 package com.bupt.dql.test;
 
-import com.bupt.dql.common.util.DateUtil;
-import org.junit.Test;
-
 import java.text.ParseException;
+
+import org.junit.Test;
+import org.springframework.beans.BeanUtils;
+
+import com.bupt.dql.common.util.DateUtil;
+
+import lombok.Data;
 
 /**
  * @author: mai
@@ -36,5 +40,27 @@ public class DateUtilTest {
         System.out.println(a);
         String day = DateUtil.longToDay(a);
         System.out.println(day);
+    }
+
+    @Test
+    public void test03(){
+        Bean02 bean02 = new Bean02();
+        bean02.setName("mai");
+        bean02.setTime(System.currentTimeMillis());
+        Bean01 bean01 = new Bean01();
+        BeanUtils.copyProperties(bean02, bean01);
+        System.out.println(bean01);
+    }
+
+    @Data
+    public static class Bean01 {
+        String time;
+        String name;
+    }
+
+    @Data
+    public static class Bean02 {
+        Long time;
+        String name;
     }
 }
