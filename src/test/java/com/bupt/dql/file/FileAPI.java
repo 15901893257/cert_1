@@ -35,16 +35,16 @@ public class FileAPI {
             } catch (IOException e) {
                 logger.error("文件IO异常：{}", e);
             } finally {
-                if (inputStreamreader != null) {
+                if (bufferedReader != null) {
                     try {
-                        inputStreamreader.close();
+                        bufferedReader.close();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
-                if (bufferedReader != null) {
+                if (inputStreamreader != null) {
                     try {
-                        bufferedReader.close();
+                        inputStreamreader.close();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

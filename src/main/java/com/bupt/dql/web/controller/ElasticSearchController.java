@@ -1,17 +1,19 @@
 package com.bupt.dql.web.controller;
 
-import com.bupt.dql.service.elasticsearch.ElasticsearchService;
-import com.bupt.dql.web.common.BaseController;
-import com.bupt.dql.web.common.JsonResult;
-import com.bupt.dql.web.pojo.dto.ElasticSearchDTO;
-import com.bupt.dql.web.pojo.vo.ElasticCodeVO;
+import java.util.List;
+
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.annotation.Resource;
-import java.util.List;
+import com.bupt.dql.service.elasticsearch.ElasticsearchService;
+import com.bupt.dql.web.common.BaseController;
+import com.bupt.dql.web.common.JsonResult;
+import com.bupt.dql.web.pojo.dto.ElasticSearchDTO;
+import com.bupt.dql.web.pojo.vo.ElasticCodeVO;
 
 /**
  * @author: mai
@@ -26,12 +28,22 @@ public class ElasticSearchController extends BaseController {
 
     @RequestMapping("/search")
     public String search() {
-        return "elasticsearch/search";
+        return "es/search";
     }
 
     @RequestMapping("/index")
     public String index1() {
         return "es/index";
+    }
+
+    @RequestMapping("/create")
+    public String create() {
+        return "es/create";
+    }
+
+    @RequestMapping("/upload")
+    public String upload() {
+        return "es/upload";
     }
 
     /**
@@ -54,7 +66,7 @@ public class ElasticSearchController extends BaseController {
      */
     @PostMapping("/list")
     @ResponseBody
-    public JsonResult list(ElasticSearchDTO param){
+    public JsonResult list(ElasticSearchDTO param) {
         System.out.println(param.getIndex() + param.getKeyWord());
         List<ElasticCodeVO> list = elasticsearchService.query(param);
         return JsonResult.success("操作成功", list, list.size());

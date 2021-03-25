@@ -16,4 +16,7 @@ public class ElasticSearchDTO {
 
     //关键字或正则表达式
     private String keyWord;
+
+    //返回结果数量
+    private int num;
 }

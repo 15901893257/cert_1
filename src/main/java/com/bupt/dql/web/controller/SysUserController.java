@@ -40,6 +40,21 @@ public class SysUserController extends BaseController {
     @Resource
     private ISysUserService sysUserService;
 
+    @RequestMapping("test1")
+    public String test1() {
+        return "sysUser/test1";
+    }
+
+    @RequestMapping("test2")
+    public String test2() {
+        return "sysUser/test2";
+    }
+
+    @RequestMapping("test3")
+    public String test3() {
+        return "sysUser/test3";
+    }
+
     @PostMapping("/list")
     @ResponseBody
     public JsonResult list(SysUserQuery query) {

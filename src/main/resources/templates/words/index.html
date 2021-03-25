@@ -36,6 +36,12 @@
             <!-- 表格工具栏 -->
             <form class="layui-form toolbar">
                 <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <div class="layui-input-inline">
+                                <input type="text" name="operator" placeholder="请输入关键词" autocomplete="off"
+                                   class="layui-input">
+                        </div>
+                    </div>
                     <!-- 索引下拉单选 -->
                     <div class="layui-inline">
                         <div class="layui-input-inline">
@@ -47,18 +53,12 @@
                             </select>
                         </div>
                     </div>
-                    <div class="layui-inline">
-                        <div class="layui-input-inline">
-                            <input type="text" name="operator" placeholder="请输入创建人/更新人" autocomplete="off"
-                                   class="layui-input">
-                        </div>
-                    </div>
                     <!-- 索引下拉单选 -->
                     <div class="layui-inline">
                         <div class="layui-input-inline">
                             <!-- 下拉单选 -->
                             <select name="indexType" id="indexType"  lay-verify="" lay-search="" lay-filter="status" class="layui-input">
-                                <option value='-1'>【请选择索引】</option>
+                                <option value='-1'>【请选择语言类型】</option>
                                 <option value='-1'>全部</option>
                                 <option value='0'>C</option>
                                 <option value='1'>C++</option>

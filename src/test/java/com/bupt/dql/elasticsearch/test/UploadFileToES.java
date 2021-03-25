@@ -22,8 +22,6 @@ public class UploadFileToES {
     private FileAPI fileAPI = new FileAPI();
     private static int n = 0;   //统计文件上传数量
 
-
-
     private void readFile(String path) {
         File file = new File(path);
         if (file.exists()) {
@@ -71,15 +69,17 @@ public class UploadFileToES {
                         addTobulkProcessor(file1.getAbsolutePath());
                     } else if(file1.isFile()){
                         String filePath = file1.getAbsolutePath();
-//                        System.out.println(file1);
                         String[] paths = filePath.split("/");
-                        String fileName = "MSSCRS";
-                        if (paths.length >= 7) {
+                        String fileName = "";
+                        String author = "";
+                        if (paths.length >= 6) {
                             fileName = paths[6];
+                            author = paths[5];
                         }
                         String code = fileAPI.readFile(file1).toString();
+//                        System.out.print(code);
                         Map<String,Object> map = new HashMap<String,Object>();
-                        map.put("filename",fileName + "/" + file1.getName());
+                        map.put("filename", author + "/" + fileName + "/" + file1.getName());
                         map.put("code",code);
                         bulkProcessor.add(new IndexRequest("java").source(map));
                         n++;
@@ -131,6 +131,9 @@ public class UploadFileToES {
 
     @Test
     public void testExcuteBulkprocessor(){
-        excuteBulkprocessor("/Users/dengquanliang/data/project/ideaProject");
+        long start = System.currentTimeMillis();
+        excuteBulkprocessor("/Users/dengquanliang/data/html/test");
+        long end = System.currentTimeMillis();
+        System.out.println("时间消耗：" + (end - start) / 1000 + "秒");
     }
 }

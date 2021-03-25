@@ -12,8 +12,16 @@ import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
+import org.elasticsearch.client.indices.CreateIndexRequest;
+import org.elasticsearch.common.lucene.search.function.CombineFunction;
+import org.elasticsearch.common.lucene.search.function.FieldValueFactorFunction;
 import org.elasticsearch.common.text.Text;
+import org.elasticsearch.index.query.MatchQueryBuilder;
+import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.index.query.functionscore.FunctionScoreQueryBuilder;
+import org.elasticsearch.index.query.functionscore.ScoreFunctionBuilder;
+import org.elasticsearch.index.query.functionscore.ScoreFunctionBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
@@ -41,6 +49,8 @@ public class ElasticsearchService {
 
     private Gson gson = new Gson();
 
+    private final float NUM = 0.1f;
+
     @Resource
     private RestHighLevelClient restHighLevelClient;
 
@@ -58,11 +68,13 @@ public class ElasticsearchService {
         highlightBuilder.preTags("<span style='color:red'>");
         highlightBuilder.postTags("</span>");
 
+//        SearchRequestBuilder requestBuilder = new SearchRequestBuilder(null, null);
         searchSourceBuilder.highlighter(highlightBuilder);
         //设置返回文档数量,默认是10
         searchSourceBuilder.from(0);
-        searchSourceBuilder.size(ElasticsearchConstant.ES_RESULT_SIZE);
+        searchSourceBuilder.size(param.getNum());
         searchSourceBuilder.sort(ElasticsearchConstant.ORDER_FIELD);
+
         //设置返回的字段，过滤code
         searchSourceBuilder.fetchSource(ElasticsearchConstant.FILENAME, ElasticsearchConstant.CODE_FILED);
         searchRequest.source(searchSourceBuilder);
@@ -123,6 +135,21 @@ public class ElasticsearchService {
         if (StringUtils.isEmpty(param.getKeyWord())) {
             throw new ParamException("请输入关键字！");
         }
+    }
+
+    private void setScore() {
+        MatchQueryBuilder matchQueryBuilder = QueryBuilders.matchQuery("code", "name");
+        ScoreFunctionBuilder<?> scoreFunctionBuilder = ScoreFunctionBuilders
+                .fieldValueFactorFunction("code")
+                .modifier(FieldValueFactorFunction.Modifier.LN1P).factor(NUM);
+
+        FunctionScoreQueryBuilder queryBuilder =
+                QueryBuilders.functionScoreQuery(matchQueryBuilder, scoreFunctionBuilder).boostMode(CombineFunction.SUM);
+    }
+
+    public void createIndex() {
+        CreateIndexRequest createIndexRequest = new CreateIndexRequest("test");
+        createIndexRequest.settings();
     }
 
 }

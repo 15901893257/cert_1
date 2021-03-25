@@ -28,73 +28,34 @@
         <!-- 内容区 -->
         <div class="layui-card-body">
             <form class="layui-form">
-                <input name="id" id="id" type="hidden" th:value="${info?.id}">
-<!--                <div class="layui-form-item">-->
-<!--                    <label class="layui-form-label">姓名</label>-->
-<!--                    <div class="layui-input-inline">-->
-<!--                        <input type="text" name="name" id="name" th:value="${info?.name}" required  lay-verify="required" placeholder="请输入姓名" autocomplete="off" class="layui-input">-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="layui-form-item">-->
-<!--                    <label class="layui-form-label">用户名</label>-->
-<!--                    <div class="layui-input-inline">-->
-<!--                        <input type="text" name="title" id="username" th:value="${info?.username}" required  lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input">-->
-<!--                    </div>-->
-<!--                </div>-->
+<!--                <input name="id" id="id" type="hidden" th:value="${info?.id}">-->
                 <div class="layui-form-item">
-                    <label class="layui-form-label">密码</label>
+                    <label class="layui-form-label">用户名: </label>
                     <div class="layui-input-inline">
-                        <input type="password" name="password" id="password"  required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-<!--                <div class="layui-form-item">-->
-<!--                    <label class="layui-form-label">出生日期</label>-->
-<!--                    <div class="layui-input-inline" >-->
-<!--                        <input type="text" th:value="${info?.birthDay}" class="layui-input" id="birthDay">-->
-<!--                    </div>-->
-<!--                </div>-->
-                <div class="layui-form-item">
-                    <label class="layui-form-label">手机号码</label>
-                    <div class="layui-input-inline">
-                        <input type="text" name="phone" id="phone" th:value="${info?.phone}" required  lay-verify="required" placeholder="请输入手机号码" autocomplete="off" class="layui-input">
+                        <label class="layui-form-label">张三</label>
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label">邮箱</label>
+                    <label class="layui-form-label">手机号: </label>
                     <div class="layui-input-inline">
-                        <input type="text" name="email" id="email" th:value="${info?.email}" required  lay-verify="required" placeholder="请输入邮箱" autocomplete="off" class="layui-input">
+                        <label class="layui-form-label">1111111</label>
                     </div>
                 </div>
-<!--                <div class="layui-form-item">-->
-<!--                    <label class="layui-form-label">性别</label>-->
-<!--                    <div class="layui-input-inline">-->
-<!--                        <select name="gender" id="gender" th:value="${info?.gender}" lay-verify="required">-->
-<!--                            <option value="0"></option>-->
-<!--                            <option value="0">女</option>-->
-<!--                            <option value="1">男</option>-->
-<!--                        </select>-->
-<!--                    </div>-->
-<!--                </div>-->
                 <div class="layui-form-item">
-                    <label class="layui-form-label">状态</label>
+                    <label class="layui-form-label">邮箱: </label>
                     <div class="layui-input-inline">
-                        <select name="gender" id="status" th:value="${info?.status}" lay-verify="required">
-                            <option value="0"></option>
-                            <option value="0">启用</option>
-                            <option value="1">禁用</option>
-                        </select>
+                        <label class="layui-form-label">zhangsang.qq.com</label>
                     </div>
                 </div>
-                <div class="layui-form-item layui-form-text">
-                    <label class="layui-form-label">备注</label>
-                    <div class="layui-input-block">
-                        <textarea name="remark" id="remark" th:value="${info?.remark}" placeholder="请输入内容" class="layui-textarea"></textarea>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">性别: </label>
+                    <div class="layui-input-inline">
+                        <label class="layui-form-label">男</label>
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <div class="layui-input-block">
-                        <button class="layui-btn" lay-submit lay-filter="formDemo" id="submit">立即提交</button>
-                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                        <button class="layui-btn" lay-submit lay-filter="formDemo" id="submit">返回</button>
                     </div>
                 </div>
             </form>

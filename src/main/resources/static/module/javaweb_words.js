@@ -51,7 +51,7 @@ layui.use(['func'], function () {
                     }
                     return '<span class="layui-btn ' + cls + ' layui-btn-xs">'+indexType+'</span>';
                 }}
-            , {field: 'operator', width: 100, title: '创建人/更新人', align: 'center'}
+            , {field: 'operator', width: 100, title: '创建人', align: 'center'}
             , {field: 'ctime', width: 180, title: '创建时间', align: 'center'}
             , {field: 'utime', width: 180, title: '更新时间', align: 'center'}
             , {field: 'description', width: 200, title: '描述', align: 'center'}
@@ -62,7 +62,7 @@ layui.use(['func'], function () {
         func.tableIns(cols, "tableList");
 
         //【设置弹框】
-        func.setWin("系统人员");
+        func.setWin("敏感词");
 
         //【设置状态】
         func.formSwitch('status', null, function (data, res) {

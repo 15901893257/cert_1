@@ -47,10 +47,6 @@
                 <a ew-event="lockScreen" title="锁屏"><i class="layui-icon layui-icon-password"></i></a>
             </li>
             <li class="layui-nav-item" lay-unselect>
-                <a>
-                    <img src="http://manage.javaweb.vip//images/admin/20200722/20200722133834275.jpg" class="layui-nav-img">
-                    <cite>管理员</cite>
-                </a>
                 <dl class="layui-nav-child">
                     <dd lay-unselect><a ew-href="/login">个人中心</a></dd>
                     <dd lay-unselect><a ew-event="psw">修改密码</a></dd>
@@ -68,38 +64,49 @@
     <div class="layui-side">
         <div class="layui-side-scroll">
             <ul class="layui-nav layui-nav-tree " nav-id="xt1" lay-filter="admin-side-nav" lay-shrink="_all" style="margin: 15px 0;">
-<!--                <li class="layui-nav-item">-->
-<!--                    <a><i class="layui-icon layui-icon-username"></i>&emsp;<cite>权限管理</cite></a>-->
-<!--                    <dl class="layui-nav-child">-->
-<!--                        <dd><a lay-href="/sysUser/index">人员管理</a></dd>-->
-<!--                        <dd><a lay-href="/es/index1">全文搜索</a></dd>-->
-<!--                        <dd><a lay-href="/menu/index">菜单管理</a></dd>-->
-<!--                        <dd><a lay-href="/operlog/index">操作日志</a></dd>-->
-<!--                        <dd><a lay-href="/loginlog/index">登录日志</a></dd>-->
-<!--                    </dl>-->
-<!--                </li>-->
                 <li class="layui-nav-item">
                     <a><i class="layui-icon layui-icon-home"></i>&emsp;<cite>全文搜索</cite></a>
                     <dl class="layui-nav-child">
-                        <dd><a lay-href="/es/index">全文搜索</a></dd>
+                        <dd><a lay-href="/es/search">全文搜索</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
-                    <a><i class="layui-icon layui-icon-home"></i>&emsp;<cite>人员管理</cite></a>
+                    <a><i class="layui-icon layui-icon-home"></i>&emsp;<cite>索引管理</cite></a>
                     <dl class="layui-nav-child">
-                        <dd><a lay-href="/sysUser/index">人员管理</a></dd>
+                        <dd><a lay-href="/es/create">创建索引</a></dd>
                     </dl>
                 </li>
+<!--                <li class="layui-nav-item">-->
+<!--                    <a><i class="layui-icon layui-icon-home"></i>&emsp;<cite>人员管理</cite></a>-->
+<!--                    <dl class="layui-nav-child">-->
+<!--                        <dd><a lay-href="/sysUser/index">人员管理</a></dd>-->
+<!--                    </dl>-->
+<!--                </li>-->
                 <li class="layui-nav-item">
                     <a><i class="layui-icon layui-icon-home"></i>&emsp;<cite>敏感词管理</cite></a>
                     <dl class="layui-nav-child">
-                        <dd><a lay-href="/words/index">敏感词管理</a></dd>
+                        <dd><a lay-href="/words/index">敏感词查询</a></dd>
+                    </dl>
+                    <dl class="layui-nav-child">
+                        <dd><a lay-href="/words/edit">添加敏感词</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
                     <a><i class="layui-icon layui-icon-home"></i>&emsp;<cite>日志管理</cite></a>
                     <dl class="layui-nav-child">
-                        <dd><a lay-href="/loginLog/index">登陆日志</a></dd>
+                        <dd><a lay-href="/loginLog/index">查询日志</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a><i class="layui-icon layui-icon-home"></i>&emsp;<cite>个人中心</cite></a>
+                    <dl class="layui-nav-child">
+                        <dd><a lay-href="/sysUser/test1">个人信息查看</a></dd>
+                    </dl>
+                    <dl class="layui-nav-child">
+                        <dd><a lay-href="/sysUser/test2">修改个人信息</a></dd>
+                    </dl>
+                    <dl class="layui-nav-child">
+                        <dd><a lay-href="/sysUser/test3">修改密码</a></dd>
                     </dl>
                 </li>
             </ul>
