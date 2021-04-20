@@ -18,5 +18,5 @@ public class ElasticSearchDTO {
     private String keyWord;
 
     //返回结果数量
-    private int num;
+    private Integer num;
 }

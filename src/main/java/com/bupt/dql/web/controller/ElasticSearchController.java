@@ -15,10 +15,13 @@ import com.bupt.dql.web.common.JsonResult;
 import com.bupt.dql.web.pojo.dto.ElasticSearchDTO;
 import com.bupt.dql.web.pojo.vo.ElasticCodeVO;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * @author: mai
  * @date: 2019/7/3
  */
+@Slf4j
 @Controller
 @RequestMapping("/es")
 public class ElasticSearchController extends BaseController {
@@ -54,8 +57,9 @@ public class ElasticSearchController extends BaseController {
     @RequestMapping("/matchQuery")
     @ResponseBody
     public List<ElasticCodeVO> matchQuery(ElasticSearchDTO param) {
-        System.out.println(param.getIndex() + param.getKeyWord());
+        log.info("查询参数, {}", param);
         List<ElasticCodeVO> response = elasticsearchService.query(param);
+//        log.info("返回结果, {}", response);
         return response;
     }
 

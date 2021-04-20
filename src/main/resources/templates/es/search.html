@@ -68,7 +68,7 @@
                     <div class="layui-input-inline">
                         <!-- 下拉单选 -->
                         <select name="num" id="num" lay-verify="" lay-search="" lay-filter="gender" class="layui-input">
-                            <option value=''>【选择最大返回结果数量】</option>
+                            <option value='50'>【选择最大返回结果数量】</option>
                             <option value='50'>50</option>
                             <option value='100'>100</option>
                             <option value='200'>200</option>
@@ -150,14 +150,14 @@
                     // field: "id",
                     formatter: function (value,row,index) {
                         var html = "<div class='form-inline'>"+
-                            // "<div class='form-group' style='margin-right: 100px;color: #007bff;'>"+row['filename']+"</div>"+
-                            // "<div class='form-group'><div><div class='point point-lg point-primary '></div>"+row['language']+"</div></div>"+
-                            // "</div>"+
-                            // "<br><pre class='prettyprint linenums'>"+row['highlight']+"</pre>"
                             "<div class='form-group' style='margin-right: 100px;color: #007bff;'>"+row['filename']+"</div>"+
-                            "<div class='form-group'><div class='point point-lg point-primary '>"+row['language']+"</div></div>"+
+                            "<div class='form-group'><div><div class='point point-lg point-primary '></div>"+row['language']+"</div></div>"+
                             "</div>"+
                             "<br><pre class='prettyprint linenums'>"+row['highlight']+"</pre>"
+                            // "<div class='form-group' style='margin-right: 100px;color: #007bff;'>"+row['filename']+"</div>"+
+                            // "<div class='form-group'><div class='point point-lg point-primary '>"+row['language']+"</div></div>"+
+                            // "</div>"+
+                            // "<br><pre class='prettyprint linenums'>"+row['highlight']+"</pre>"
                         ;
                         return html;
                     }
@@ -173,7 +173,8 @@
                 offset: params.offset,  //页码
                 index: $("#index").val(),  //索引
                 type: $("#type").val(),  //搜索类型
-                keyWord: $("#keyWord").val()  //关键字
+                keyWord: $("#keyWord").val(), //关键字
+                num: $("#num").val()  //返回结果数量
             };
             return temp;
         };
